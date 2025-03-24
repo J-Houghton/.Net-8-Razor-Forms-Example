@@ -1,0 +1,152 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - FormApp</title>
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <script src="~/js/site.js" asp-append-version="true"></script>
+    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/FormApp.styles.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/css/components.css" asp-append-version="true" />
+</head>
+<body>
+    <header class="site-header">
+        <div class="top-bar">
+            <div class="container">
+                <a class="university-name" href="https://www.test.domain">Some Name GoHere</a>
+                <a class="directory-link" href="https://www.test.domain/directories/">Browse A-Z</a>
+            </div>
+        </div>
+
+        <nav class="main-navigation">
+            <div class="container">
+                <div class="bar-logo"> </div>
+                <div class="vertical-divider"></div>
+                <div class="site-title">
+                    <a href="https://www.test.domain/finsvcs/">This Is A Sub Name Here</a>
+                </div>
+            </div>
+        </nav>
+
+        <div class="color-bar"></div>
+    </header>
+
+    <div class="main-container">
+
+        <main role="main" class="pb-3 main-content">
+            <div class="breadcrumb-container">
+                <ul class="breadcrumbs-list">
+                    <li class="breadcrumbs-item">
+                        <div class="home-svg-icon" style="margin-right: 0.5rem;">
+                        </div>
+                        <a class="breadcrumbs-link" href="/">home</a>
+                    </li>
+                    <li class="breadcrumbs-item"><a class="breadcrumbs-link" href="/">Administration</a></li>
+                    <li class="breadcrumbs-item">
+                        <a class="breadcrumbs-link" href="/">
+                            Services
+                        </a>
+                    </li>
+                    <li class="breadcrumbs-item">
+                        <a class="breadcrumbs-link" href="/">
+                            Cashiers
+                        </a>
+                    </li>
+                    <li class="breadcrumbs-item">
+                        <a class="breadcrumbs-link" href="/">
+                            Pay Now
+                        </a>
+                    </li>
+                </ul>
+            </div>
+            @RenderBody()
+        </main>
+
+    </div>
+    <svg xmlns="http://www.w3.org/2000/svg" style="display: none;">
+        <symbol id="brei-icon-facebook" viewBox="0 0 24 24">
+            <path d="M22.675 0H1.325C.593 0 0 .593 0 1.325v21.351C0 23.407.593 24 1.325 24H12.82v-9.294H9.692v-3.622h3.128V8.413c0-3.1 1.893-4.788 4.659-4.788 1.325 0 2.463.099 2.795.143v3.24l-1.918.001c-1.504 0-1.795.715-1.795 1.763v2.313h3.587l-.467 3.622h-3.12V24h6.116c.73 0 1.323-.593 1.323-1.325V1.325C24 .593 23.407 0 22.675 0z" />
+        </symbol>
+        <symbol id="brei-icon-twitter" viewBox="0 0 24 24">
+            <path d="M23.954 4.569c-.885.389-1.83.654-2.825.775 1.014-.611 1.794-1.574 2.163-2.723-.951.555-2.005.959-3.127 1.184-.896-.959-2.173-1.559-3.591-1.559-2.717 0-4.92 2.203-4.92 4.917 0 .39.045.765.127 1.124C7.691 8.094 4.066 6.13 1.64 3.161c-.427.722-.666 1.561-.666 2.475 0 1.71.87 3.213 2.188 4.096-.807-.026-1.566-.248-2.228-.616v.061c0 2.385 1.693 4.374 3.946 4.827-.413.111-.849.171-1.296.171-.314 0-.615-.03-.916-.086.631 1.953 2.445 3.377 4.604 3.417-1.68 1.319-3.809 2.105-6.102 2.105-.39 0-.779-.023-1.17-.067 2.189 1.394 4.768 2.209 7.557 2.209 9.054 0 14-7.503 14-14v-.617c.961-.689 1.8-1.56 2.46-2.548l-.047-.02z" />
+        </symbol>
+        <symbol id="brei-icon-youtube" viewBox="0 0 24 24">
+            <path d="M23.495 6.205a3.007 3.007 0 0 0-2.088-2.088c-1.87-.501-9.396-.501-9.396-.501s-7.507-.01-9.396.501A3.007 3.007 0 0 0 .527 6.205a31.247 31.247 0 0 0-.522 5.805 31.247 31.247 0 0 0 .522 5.783 3.007 3.007 0 0 0 2.088 2.088c1.868.502 9.396.502 9.396.502s7.506 0 9.396-.502a3.007 3.007 0 0 0 2.088-2.088 31.247 31.247 0 0 0 .5-5.783 31.247 31.247 0 0 0-.5-5.805zM9.609 15.601V8.408l6.264 3.602z" />
+        </symbol>
+        <symbol id="brei-icon-instagram" viewBox="0 0 24 24">
+            <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 1 0 0 12.324 6.162 6.162 0 0 0 0-12.324zM12 16a4 4 0 1 1 0-8 4 4 0 0 1 0 8zm6.406-11.845a1.44 1.44 0 1 0 0 2.881 1.44 1.44 0 0 0 0-2.881z" />
+        </symbol>
+    </svg>
+    <footer class="global-footer">
+        <div class="global-footer__container">
+            <div class="global-footer__inner">
+                <!-- Social Media Links -->
+                <div class="social-links">
+                    <a href="https://www.facebook.com/Test" aria-label="facebook" class="social-link">
+                        <svg class="brei-icon brei-icon-facebook">
+                            <use xlink:href="#brei-icon-facebook"></use>
+                        </svg>
+                    </a>
+                    <a href="https://twitter.com/Test" aria-label="twitter" class="social-link left-mar">
+                        <svg class="brei-icon brei-icon-twitter">
+                            <use xlink:href="#brei-icon-twitter"></use>
+                        </svg>
+                    </a>
+                    <a href="https://www.youtube.com/user/Test" aria-label="youtube" class="social-link left-mar">
+                        <svg class="brei-icon brei-icon-youtube">
+                            <use xlink:href="#brei-icon-youtube"></use>
+                        </svg>
+                    </a>
+                    <a href="https://instagram.com/Test" aria-label="instagram" class="social-link left-mar">
+                        <svg class="brei-icon brei-icon-instagram">
+                            <use xlink:href="#brei-icon-instagram"></use>
+                        </svg>
+                    </a>
+                </div>
+                <!-- Address Information -->
+                <div class="address-container">
+                    <p><a href="https://www.test.edu/finsvcs/" class="global-footer__address-link">Systems</a></p>
+                    <p>Tests</p>
+                    <p> Test 2</p>
+                    <p>123 ASD-ASDASD Dr. South, Someplace, ?? 12345</p>
+                    </p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Secondary Footer -->
+        <div class="secondary-footer">
+            <div class="secondary-footer__inner">
+                <!-- Logo -->
+                <a class="footer-cus__logo" href="https://www.test.domain">
+                    <img src="" alt=" ">
+                </a>
+
+
+                <!-- Footer Menu -->
+                <div class="footer-menu-container">
+                    <ul class="footer-menu">
+                        <li class="footer-menu-item"><a href="https://www.test.domain/contact/">Contact Us</a></li>
+                        <li class="footer-menu-item"><a href="https://www.test.domain/advisories/">Emergency</a></li>
+                        <li class="footer-menu-item"><a href="https://www.test.domain/disclosures/">Statements and Disclosures</a></li>
+                        <li class="footer-menu-item"><a href="https://www.test.domain/about/values/accessibility/">Accessibility</a></li>
+                        <li class="footer-menu-item"><a href="g"><img class="degree-stats" src="" alt=" Statistics"></a></li>
+                        <li class="footer-menu-item"><a class="footer-cus__menu-link" href="https://www.test.domain/">Statement</a></li>
+                    </ul>
+                    <ul class="footer-menu">
+                        <li class="footer-menu-item"><a href="https://www.test.domain/about/copyright.html">© </a>
+                        <li class="footer-menu-item"><a style="color: #000;">Updated 1/1/1111 </a>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="~/js/site.js" asp-append-version="true"></script>
+
+    @await RenderSectionAsync("Scripts", required: false)
+</body>
+</html>

@@ -1,0 +1,43 @@
+﻿@page
+@model ReviewModel
+@{
+    ViewData["PageTitle"] = "Review and Submit";
+}
+
+<div class="d-flex flex-column align-items-center">
+    <div class="w-50">
+        <h2>Review Your Information</h2>
+
+        <div class=" card mb-4">
+            <div class="custom-card-header card-header bg-primary text-white">
+                <h3 class="mb-0">Please verify all information before submitting</h3>
+            </div>
+            <div class="custom-card-body card-body">
+                <div class="row mb-3">
+                    <div class="col-md-4"><strong>User ID:</strong></div>
+                    <div class="col-md-8 info-text">@Model.FormData.UserId</div>
+                </div>
+                <div class="row mb-3">
+                    <div class="col-md-4"><strong>Last Name:</strong></div>
+                    <div class="col-md-8 info-text">@Model.FormData.UserLastName</div>
+                </div>
+                <div class="row mb-3">
+                    <div class="col-md-4"><strong>Account Type:</strong></div>
+                    <div class="col-md-8 info-text">@Model.FormData.SelectedAccount</div>
+                </div>
+                <div class="row mb-3">
+                    <div class="col-md-4"><strong>Transaction Amount:</strong></div>
+                    <div class="col-md-8 info-text">@Model.FormData.TotalAmount.ToString("C")</div>
+                </div>
+            </div>
+        </div>
+
+
+        <form method="post"> 
+            <div class="d-flex justify-content-between">
+                <button asp-page-handler="back" type="submit" class="col-3 btn custom-btn-secondary">Back to Step 2</button>
+                <button type="submit" class="col-2 btn custom-btn-primary ">Submit</button>
+            </div>
+        </form>
+    </div>
+</div>

@@ -1,0 +1,96 @@
+﻿/* Custom Box Label */
+.custom-box-label {
+    color: #fff !important;
+    text-align: center;
+    padding-right: 1rem !important;
+    font-weight: bold !important;
+    background: #694190;
+}
+
+/* Form Components */
+.input-spacer {
+    display: inline-block;
+    width: 2rem;
+}
+
+.cents-input {
+    max-width: 3rem;
+}
+
+.custom-z-index {
+    z-index: 99;
+}
+
+/* Alerts and Info Components */
+.index2-info {
+    color: #fff;
+    background-color: #694190;
+    border-color: #512888;
+}
+
+.custom-alert-warning {
+    background: #3D1366;
+    color: #F4C55C;
+    --bs-text-opacity: 1;
+    border: 2px solid #927EB4;
+    border-radius: 5px;
+    animation: flash-warning 1.5s ease-in-out infinite;
+    animation-iteration-count: 5;
+    padding: 15px;
+}
+
+@keyframes flash-warning {
+    0%, 100% {
+        background-color: #3D1366;
+        border-color: #927EB4;
+    }
+
+    50% {
+        background-color: #3D1366;
+        border-color: #927EB4;
+        box-shadow: 0 0 20px rgba(255, 193, 7, 1);
+    }
+}
+
+/* Button Components */
+.custom-btn-primary {
+    color: #fff;
+    background-color: #512888;
+    border: 2px solid #F1BE48;
+    font-weight: bold;
+    padding: 0.5rem 1.5rem;
+}
+    .custom-btn-primary:hover {
+        color: #d1d1d1;
+    }
+
+    .custom-btn-secondary {
+        color: #512888;
+        background-color: #d1d1d1;
+        border: 1px solid #F1BE48;
+        font-weight: 600;
+        padding: 0.5rem 1.5rem;
+    }
+
+.btn-primary {
+    color: #fff;
+    background-color: #1b6ec2;
+    border-color: #1861ac;
+}
+
+.nav-pills .nav-link.active, .nav-pills .show > .nav-link {
+    color: #fff;
+    background-color: #1b6ec2;
+    border-color: #1861ac;
+}
+
+/* Card Components */
+.custom-card-header {
+    background-color: #694190 !important;
+    border: 1px solid rgba(105, 65, 144);
+    font-weight: bold;
+}
+
+.card {
+    border: 1px solid rgba(105, 65, 144) !important;
+}

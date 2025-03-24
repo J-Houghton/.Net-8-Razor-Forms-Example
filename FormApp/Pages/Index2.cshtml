@@ -1,0 +1,153 @@
+﻿@page
+@model Index2
+@{
+    ViewData["PageTitle"] = "Page 2";
+} 
+
+<form method="post">
+    @Html.AntiForgeryToken()
+    <div class="container-fluid"> 
+        <div class="row justify-content-center">
+            <div class="col-md-6">
+                <!-- Alert Message -->
+                @if (!string.IsNullOrEmpty(Model.Message))
+                {
+                    <div class="alert custom-alert-warning mb-2 mt-2 align-content-center">
+                        @{
+                            var errorLines = Model.Message.Split("\n", StringSplitOptions.RemoveEmptyEntries);
+                            for (int i = 0; i < errorLines.Length; i++)
+                            {
+                                if (i == 0) // First line is the header
+                                {
+                                    <strong>@errorLines[i]</strong>
+                                    <br />
+                                }
+                                else
+                                {
+                                    <span class="m-2 text-danger">@(i). @errorLines[i]</span>
+                                    <br />
+                                }
+                            }
+                        }
+                    </div>
+                }
+                <!-- User Info Section -->
+                <h4 class="index-header-text">Additional Information</h4>
+                <div class="alert index2-info mb-3">
+                    <h4 class="fw-bold">User Information:</h4>
+                    <p><strong>ID:</strong> @Model.FormData.UserId</p>
+                    <p class="mb-0"><strong>Last Name:</strong> @Model.FormData.UserLastName</p>
+                </div>
+
+                <!-- Account Selection -->
+                <div class="mb-3">
+                    <div class="input-group">
+                        <label asp-for="FormData.SelectedAccount" class="input-group-text custom-box-label">Select Account Type</label>
+                        <span class="input-spacer"></span>
+                        <select asp-for="FormData.SelectedAccount" asp-items="Model.AccountOptions" class="form-select"></select>
+                    </div>
+                    <span asp-validation-for="FormData.SelectedAccount" class="text-danger"></span>
+                </div>
+
+                <!-- Amount Input -->
+                <div class="mb-3">
+                    <div class="input-group">
+                        <label class="input-group-text custom-box-label">Amount</label>
+                        <span class="input-spacer"></span>
+                        <span class="input-group-text">$</span>
+                        <input class="form-control text-end" type="text" placeholder="0" id="DollarPart" name="DollarPartUI" />
+                        <input type="hidden" asp-for="FormData.DollarAmount" />
+                        <span class="input-group-text">.</span>
+                        <input asp-for="FormData.CentsAmount" class="form-control text-start cents-input" placeholder="00" />
+                    </div>
+                    <span asp-validation-for="FormData.DollarAmount" class="text-danger"></span>
+                    <span asp-validation-for="FormData.CentsTotal" class="text-danger"></span>
+                </div>
+
+                <!-- Navigation Buttons -->
+                <div class="d-flex justify-content-between mt-4">
+                    <a class="btn custom-btn-secondary" asp-page="./Index">Back</a>
+                    <button type="submit" class="btn custom-btn-primary" asp-page-handler="submit">Review</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</form>
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+
+    <script>
+            document.addEventListener('DOMContentLoaded', function() {
+                // Dollar input formatting
+                const dollarInput = document.querySelector('input[name="DollarPartUI"]');
+                const dollarHiddenInput = document.querySelector('input[name="FormData.DollarAmount"]');
+                const form = document.querySelector('form');
+                const maxValue = 21474737;
+
+                // Initial formatting
+                if (dollarHiddenInput.value) {
+                    dollarInput.value = formatNumberWithCommas(dollarHiddenInput.value);
+                } else {
+                    dollarHiddenInput.value = sanitizeNumeric(dollarInput.value);
+                }
+
+                // Set max length
+                dollarInput.setAttribute('maxlength', '10');
+
+                // Handle dollar input changes
+                dollarInput.addEventListener('input', function(e) {
+                    // Remove non-numeric characters
+                    let value = sanitizeNumeric(this.value);
+
+                    // Remove leading zeros
+                    value = removeLeadingZeros(value);
+
+                    // Update hidden input with actual value
+                    dollarHiddenInput.value = value;
+
+                    // Format with commas and preserve cursor
+                    sanitizeInputWithCursor(this, /[^0-9,]/g);
+
+                    // Format with commas for display
+                    const formattedValue = formatNumberWithCommas(value);
+
+                    // Update with formatted value and preserve cursor
+                    const cursorPos = this.selectionStart;
+                    const oldLength = this.value.length;
+                    this.value = formattedValue;
+                    const lengthDifference = formattedValue.length - oldLength;
+                    this.setSelectionRange(cursorPos + lengthDifference, cursorPos + lengthDifference);
+                });
+
+                // Form submission validation
+                form.addEventListener('submit', function(e) {
+                    const value = parseInt(dollarHiddenInput.value.replace(/,/g, ''));
+                    if (value > maxValue) {
+                        e.preventDefault();
+                        alert("Woah, Are you sure you need to pay this much? The max dollar amount is $21 Million!");
+                    }
+                });
+
+                // Cents input handling
+                const centsInput = $('input[name="FormData.CentsAmount"]');
+
+                // Format on page load
+                formatCents(centsInput[0]);
+
+                // Handle cents input
+                centsInput.on('input', function (e) {
+                    sanitizeInputWithCursor(this, /[^0-9]/g);
+
+                    // Limit to 2 digits
+                    if (this.value.length > 2) {
+                        this.value = this.value.substring(0, 2);
+                    }
+                });
+
+                centsInput.on('blur', function() {
+                    formatCents(this);
+                });
+            });
+    </script>
+}
+

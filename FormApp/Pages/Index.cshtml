@@ -1,0 +1,82 @@
+﻿@page  
+@model Index
+@{
+    ViewData["Title"] = "Make a payment";
+    ViewData["PageTitle"] = "Make a payment";
+}
+
+<form method="post">
+    @Html.AntiForgeryToken()
+    <div class="container-fluid">
+        <div class="row justify-content-center">
+            <div class="col-md-6">
+                <!-- Alert Message -->
+                @if (!string.IsNullOrEmpty(Model.Message))
+                {
+                    <div class="alert custom-alert-warning mb-2 mt-2" style="font-weight: 650;">
+                        @Model.Message
+                    </div>
+                }
+                <!-- Header Text -->
+                <h4 class="mb-3 index-header-text">In order to make a payment, please enter the following information.</h4>
+
+
+                <!-- ID Input -->
+                <div class="mb-3">
+                    <div class="input-group">
+                        <label asp-for="FormData.UserId" class="input-group-text custom-box-label"></label>
+                        <span class="input-spacer"></span>
+                        <input asp-for="FormData.UserId" class="form-control" placeholder="81234567" />
+                    </div>
+                    <span asp-validation-for="FormData.UserId" class="text-danger"></span>
+                </div>
+
+                <!-- Last Name Input -->
+                <div class="mb-4">
+                    <div class="input-group">
+                        <label asp-for="FormData.UserLastName" class="input-group-text custom-box-label"></label>
+                        <span class="input-spacer"></span>
+                        <input asp-for="FormData.UserLastName" class="form-control" placeholder="Wildcat" />
+                    </div>
+                    <span asp-validation-for="FormData.UserLastName" class="text-danger"></span>
+                </div>
+
+                <!-- Buttons -->
+                <div class="d-flex justify-content-between mb-3">
+                    <button type="submit" class="btn custom-btn-secondary" formnovalidate="formnovalidate" asp-page-handler="reset">Reset</button>
+                    <button type="submit" class="btn custom-btn-primary" asp-page-handler="submit">Next</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</form>
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+    <script>
+             /*
+        * Notes on Sanitize and Validate:
+        *   - Sanitize: Active, action, cleans data by removing unwanted characters from input.
+        *   - Validate: Passive, picky, checks data against rules, rejecting it without modification if it fails.
+        *
+        *   Client-Side Input Handling:
+        *     - Last Name: Validation runs only on the client side to highlight invalid characters for the user.
+        *                  No sanitization, as I want to display user's invalid chars to user.
+        *
+        *     - ID: Only sanitizing is implemented, indirectly validating due to a simple numbers only rule.
+        *
+        */
+        $(document).ready(function () {
+            // User ID - Numbers only
+            $('input[name="FormData.UserId"]').on('input', function (e) {
+                sanitizeInputWithCursor(this, /[^0-9]/g);
+            });
+
+            // Last Name - Remove disallowed characters
+            $('input[name="FormData.UserLastName"]').on('input', function () {
+                // Regex for disallowed characters
+                const disallowedChars = /[<>{}()\[\]\\\/;:=+*&^%$#@@!?~|]/g;
+                sanitizeInputWithCursor(this, disallowedChars);
+            });
+        });
+    </script>
+}
