@@ -1,7 +1,7 @@
 # .Net-8-Razor-Forms-Example
 Simple .Net Core 8 Razor Forms app 
 
-### Examples: 
+### Examples Includes: 
   1. Mininal Security Configurations in `Program.cs`
   2. Bind Properties
   3. ASP Validaiton, Client and Server-Side
